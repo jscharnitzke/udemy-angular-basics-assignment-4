@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent implements OnInit {
-  @Output() tickEvent: EventEmitter<any> = new EventEmitter();
+  @Output() tickEvent = new EventEmitter<number>();
   private tickHandle;
   private count = 0;
 
@@ -15,17 +15,15 @@ export class GameControlComponent implements OnInit {
   ngOnInit() {
   }
 
-  public startGame() {
-    this.tickHandle = setInterval(this.serverTick, 1000);
+  public onStart() {
+    this.tickHandle = setInterval(() => {
+      this.count++;
+      this.tickEvent.emit(this.count);
+    }, 1000);
   }
 
-  public stopGame() {
+  public onStop() {
     clearInterval(this.tickHandle);
-  }
-
-  private serverTick() {
-    this.count++;
-    this.tickEvent.emit(this.count);
   }
 
 }
