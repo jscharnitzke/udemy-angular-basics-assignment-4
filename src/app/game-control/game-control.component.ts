@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent implements OnInit {
-  @Output() tickEvent = new EventEmitter<number>();
+  @Output() timerTicked = new EventEmitter<number>();
   private tickHandle;
   private count = 0;
 
@@ -18,7 +18,7 @@ export class GameControlComponent implements OnInit {
   public onStart() {
     this.tickHandle = setInterval(() => {
       this.count++;
-      this.tickEvent.emit(this.count);
+      this.timerTicked.emit(this.count);
     }, 1000);
   }
 

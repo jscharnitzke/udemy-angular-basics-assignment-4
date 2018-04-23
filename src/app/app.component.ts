@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  odds: number[] = [];
+  evens: number[] = [];
+
+  onTimerTick(count: number) {
+    if (count % 2 === 0 ) {
+      this.evens.push(count);
+    } else {
+      this.odds.push(count);
+    }
+  }
 }
